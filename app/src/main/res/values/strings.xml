@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Tic-Tac-Toe</string>
+    <string name="display_text">"%1$s, it's your turn! Piece: %2$s"</string>
+    <string name="button1_text">""</string>
+    <string name="button2_text">""</string>
+    <string name="button3_text">""</string>
+    <string name="button4_text">""</string>
+    <string name="button5_text">""</string>
+    <string name="button6_text">""</string>
+    <string name="button7_text">""</string>
+    <string name="button8_text">""</string>
+    <string name="button9_text">""</string>
+    <string name="x_text">"X"</string>
+    <string name="o_text">"O"</string>
+
+
+</resources>
