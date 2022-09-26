@@ -22,9 +22,9 @@ class MainActivity : AppCompatActivity() {
      * The map of all board locations on the  tic-tac-toe board. This is
      * used to convert the button numbers to the board location in the Board class.
      */
-    private val boardLocations = mapOf(0 to Pair(0, 1), 1 to Pair(0, 2), 2 to Pair(0, 3),
-        3 to Pair(1, 1), 4 to Pair(2, 2), 5 to Pair(2, 3), 6 to Pair(3, 1),
-        7 to Pair(3, 2), 8 to Pair(3, 3))
+    private val boardLocations = mapOf(0 to Pair(0, 0), 1 to Pair(0, 1), 2 to Pair(0, 2),
+        3 to Pair(1, 0), 4 to Pair(1, 1), 5 to Pair(1, 2), 6 to Pair(2, 0),
+        7 to Pair(2, 1), 8 to Pair(2, 2))
 
     /** Variables for two test human players. */
     private val player1 = HumanPlayer("Test")

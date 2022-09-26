@@ -10,8 +10,5 @@
     <string name="button7_text">""</string>
     <string name="button8_text">""</string>
     <string name="button9_text">""</string>
-    <string name="x_text">"X"</string>
-    <string name="o_text">"O"</string>
-
 
 </resources>
