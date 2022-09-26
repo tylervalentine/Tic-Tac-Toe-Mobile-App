@@ -10,5 +10,9 @@
     <string name="button7_text">""</string>
     <string name="button8_text">""</string>
     <string name="button9_text">""</string>
+    <string name="game_over_text">"Game Over!"</string>
+    <string name="error_toast">"Error: You cannot put a piece in that spot!"</string>
+    <string name="winning_toast">"%1$s, you won!"</string>
+    <string name="tie_toast">"It was a tie!"</string>
 
 </resources>

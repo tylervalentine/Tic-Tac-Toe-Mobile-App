@@ -79,9 +79,6 @@ class Game: ViewModel() {
      * Play a piece on the board. This is only allowed if a round is currently in-progress.
      *
      * This should only be called for the current player.
-     *
-     * @return Pair of the Board at the end of the game and an integer of 0 if the first player won,
-     * 1 if the second player won, and -1 if it was a tie.
      */
     fun playPiece(r: Int, c: Int): Boolean {
         require(roundInProgress) { "game round currently not in progress" }
