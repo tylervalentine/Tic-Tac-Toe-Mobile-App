@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#67BCB2"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context="com.bignerdranch.android.geoquiz.CheatActivity">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:shadowColor="#FFFFFF"
+            android:text="@string/welcome_to_tic_tac_toe"
+            android:textAlignment="center"
+            android:textColor="#6A2ADC"
+            android:textSize="50sp" />
+
+        <TextView
+            android:id="@+id/Difficulty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/please_select_difficulty"
+            android:textAlignment="center"
+            android:textColor="#FF070F"
+            android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/player1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/player_1"
+            android:textColor="#FF0000"
+            android:textSize="17sp" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="212dp"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:spinnerMode="dropdown"
+            android:visibility="visible"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/Player2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Player 2:"
+            android:textColor="#FF0000"
+            android:textSize="17sp" />
+
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="212dp"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/start_game"
+            android:layout_width="172dp"
+            android:layout_height="79dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/start_game"
+            android:textColor="#FFFFFF" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="match_parent"
+            android:layout_height="185dp"
+            app:srcCompat="@drawable/ic_launcher_foreground" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
