@@ -25,8 +25,8 @@ class MainActivity : AppCompatActivity() {
         7 to Pair(2, 1), 8 to Pair(2, 2))
 
     /** Variables for two test human players. */
-    private val player1 = HumanPlayer("Test")
-    private val player2 = HumanPlayer("Other Test")
+    private val player1 = HumanPlayer("Tyler")
+    private val player2 = HumanPlayer("Reed")
 
     /** Variable for tic-tac-toe game. */
     private val game = Game()
