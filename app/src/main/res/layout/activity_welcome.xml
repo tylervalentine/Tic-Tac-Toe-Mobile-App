@@ -55,25 +55,19 @@
             android:minHeight="48dp"
             android:spinnerMode="dropdown"
             android:visibility="visible"
+            android:entries="@array/spinner_options"
             tools:ignore="SpeakableTextPresentCheck" />
-
-        <TextView
-            android:id="@+id/name1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/player_1_name"
-            android:textColor="#FDFCFC"
-            android:textSize="17sp"
-            android:visibility="gone" />
 
         <EditText
             android:id="@+id/name_text_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/name_text"
+            android:singleLine="true"
             android:textColor="#FFFEFE"
             android:textColorHint="#FDFDFD"
             android:visibility="gone" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -111,25 +105,19 @@
             android:minHeight="48dp"
             android:spinnerMode="dropdown"
             android:visibility="visible"
+            android:entries="@array/spinner_options"
             tools:ignore="SpeakableTextPresentCheck" />
-
-        <TextView
-            android:id="@+id/name2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/player_2_name"
-            android:textColor="#FDFCFC"
-            android:textSize="17sp"
-            android:visibility="gone" />
 
         <EditText
             android:id="@+id/name_text_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/name_text"
+            android:singleLine="true"
             android:textColor="#FFFEFE"
             android:textColorHint="#FDFDFD"
             android:visibility="gone" />
+
     </LinearLayout>
 
     <LinearLayout
