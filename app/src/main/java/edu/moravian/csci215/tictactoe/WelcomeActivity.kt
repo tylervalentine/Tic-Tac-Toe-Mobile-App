@@ -1,11 +1,9 @@
 package edu.moravian.csci215.tictactoe
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import edu.moravian.csci215.tictactoe.databinding.ActivityWelcomeBinding
 
@@ -22,6 +20,12 @@ class WelcomeActivity: AppCompatActivity(), AdapterView.OnItemSelectedListener {
         setSpinnerOptions(spinnerOptions)
         binding.spinner.onItemSelectedListener = this
         binding.spinner2.onItemSelectedListener = this
+
+    }
+
+    fun changeScreenView(view: View?) {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 
     private fun setSpinnerOptions(optionsList: List<String>) {

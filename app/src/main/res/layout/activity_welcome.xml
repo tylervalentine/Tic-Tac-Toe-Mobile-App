@@ -145,6 +145,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginRight="20dp"
             android:text="@string/start_game"
+            android:onClick="changeScreenView"
             android:textColor="#FFFFFF" />
 
     </LinearLayout>
