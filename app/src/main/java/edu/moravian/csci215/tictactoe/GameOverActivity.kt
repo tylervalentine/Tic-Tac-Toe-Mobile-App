@@ -7,7 +7,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import edu.moravian.csci215.tictactoe.databinding.ActivityGameoverBinding
 
-
 class GameOverActivity : AppCompatActivity() {
     //private lateinit var displayView2: TextView
     private lateinit var binding: ActivityGameoverBinding
