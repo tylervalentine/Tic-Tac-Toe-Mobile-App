@@ -13,7 +13,7 @@
     <string name="game_over_text">Game Over!</string>
     <string name="error_toast">Error: You cannot put a piece in that spot!</string>
     <string name="winning_toast">%1$s, you won!</string>
-    <string name="tie_toast">It was a tie!</string>
+    <string name="tie_text">It was a tie!</string>
     <string name="welcome_to_tic_tac_toe">Tic Tac Toe!</string>
     <string name="please_select_difficulty">Please Select Difficulty:</string>
     <string-array name="spinner_options">
@@ -30,6 +30,11 @@
     <string name="name_button_text">Set Name</string>
     <string name="start_game">Start Game</string>
     <string name="tic_tac_toe_logo">Tic-Tac-Toe Logo</string>
+    <string name="play_again">Play again</string>
+    <string name="game_over_screen">Game Over Screen</string>
+    <string name="tie_total_text">Number of Ties: %1$s</string>
+    <string name="player_one_win_total_text">Player 1 Wins: %1$s</string>
+    <string name="player_two_win_total_text">Player 2 Wins: %1$s</string>
 
 
 </resources>

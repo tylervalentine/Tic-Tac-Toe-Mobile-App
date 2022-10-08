@@ -1,3 +1,7 @@
+/**
+ * TEAM MEMBERS: Tyler Valentine, David Olsakowski, Reed Sturza
+ */
+
 package edu.moravian.csci215.tictactoe
 
 import android.content.Intent
@@ -21,6 +25,7 @@ class WelcomeActivity: AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     }
 
+    /** Function to change screen view to game when game ends, sends data about players. */
     fun changeScreenView(view: View?) {
         val intent = Intent(this, MainActivity::class.java)
 
@@ -31,6 +36,10 @@ class WelcomeActivity: AppCompatActivity(), AdapterView.OnItemSelectedListener {
         startActivity(intent)
     }
 
+    /**
+     * Makes name text box visible or invisible based on what the user has selected from
+     * the spinners.
+     * */
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
         if(parent?.id == R.id.spinner) {
             if(parent.getItemAtPosition(pos).toString() == "Human") {

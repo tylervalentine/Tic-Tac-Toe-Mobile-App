@@ -1,14 +1,17 @@
+/**
+ * TEAM MEMBERS: Tyler Valentine, David Olsakowski, Reed Sturza
+ */
+
 package edu.moravian.csci215.tictactoe
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import kotlin.reflect.typeOf
 
 
 class MainActivity : AppCompatActivity() {
@@ -36,18 +39,32 @@ class MainActivity : AppCompatActivity() {
     /** Variable for tic-tac-toe game. */
     private val game = Game()
 
+    /** Launcher to restart the game when play again button is clicked on game over screen. */
+    private val gameLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        game.startNewRound()
+        updateBoard()
+    }
+
     /** View for the display text at the bottom of the application. */
     private lateinit var displayView: TextView
+
+    /** Variable to store result of current game. */
+    private lateinit var gameResult: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setPlayers()
+        makePlayers()
         game.startGame(player1, player2)
         game.startNewRound()
 
         game.onRoundOverListener = {
-            result -> showResultMessage(result)
+            result -> gameResult = when (result) {
+            Game.Result.TIE -> getString(R.string.tie_text)
+            Game.Result.PLAYER_1_WIN -> getString(R.string.winning_toast, game.players[0].name)
+            Game.Result.PLAYER_2_WIN -> getString(R.string.winning_toast, game.players[1].name)
+        }
+            changeScreenView(view = null)
         }
 
         displayView = findViewById(R.id.display_text_view)
@@ -61,6 +78,7 @@ class MainActivity : AppCompatActivity() {
         updateBoard()
     }
 
+    /** Updates every board piece based on current state of the game. */
     private fun updateBoard()
     {
         for(index in buttonIds.indices) {
@@ -76,8 +94,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Set the button text view specified in num.
-     * @param num number of button to update on layout.
+     * PLay turn based on position of the board given.
+     * @param index location of board to play piece.
      */
     private fun playTurn(index: Int) {
         if (!game.roundInProgress) {
@@ -91,15 +109,21 @@ class MainActivity : AppCompatActivity() {
         updateBoard()
     }
 
-    private fun setPlayers() {
-       player1 = makePlayer(intent.getStringExtra("player_1_name") ?: "",
+    /** Make player types based on data received from welcome screen. */
+    private fun makePlayers() {
+       player1 = setPlayer(intent.getStringExtra("player_1_name") ?: "",
             intent.getIntExtra("player_1_type", 0))
 
-        player2 = makePlayer(intent.getStringExtra("player_2_name") ?: "",
+        player2 = setPlayer(intent.getStringExtra("player_2_name") ?: "",
                 intent.getIntExtra("player_2_type", 0))
     }
 
-    private fun makePlayer(name: String, type: Int): Player {
+    /**
+     * Sets player types and names based on data given.
+     * @param name name of player
+     * @param type type of player
+     */
+    private fun setPlayer(name: String, type: Int): Player {
         return when (type) {
             0 -> HumanPlayer(name)
             1 -> EasyAIPlayer()
@@ -118,12 +142,14 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, resources.getString(R.string.error_toast), Toast.LENGTH_SHORT).show()
     }
 
-    private fun showResultMessage(result: Game.Result)
-    {
-        when (result) {
-            Game.Result.TIE -> Toast.makeText(this, resources.getString(R.string.tie_toast), Toast.LENGTH_SHORT).show()
-            Game.Result.PLAYER_1_WIN -> Toast.makeText(this, resources.getString(R.string.winning_toast, game.players[0].name), Toast.LENGTH_SHORT).show()
-            Game.Result.PLAYER_2_WIN -> Toast.makeText(this, resources.getString(R.string.winning_toast, game.players[1].name), Toast.LENGTH_SHORT).show()
-        }
+    /** Function to change screen view to game over when game ends. */
+    fun changeScreenView(view: View?) {
+        val intent = Intent(this, GameOverActivity::class.java)
+
+        intent.putExtra("game_result", gameResult)
+        intent.putExtra("tie_total", game.ties.toString())
+        intent.putExtra("player_1_win_total", game.wins1.toString())
+        intent.putExtra("player_2_win_total", game.wins2.toString())
+        gameLauncher.launch(intent)
     }
 }
