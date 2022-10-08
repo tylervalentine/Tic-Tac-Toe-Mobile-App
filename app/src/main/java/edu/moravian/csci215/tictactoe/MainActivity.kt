@@ -1,6 +1,5 @@
 package edu.moravian.csci215.tictactoe
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -8,7 +7,6 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlin.reflect.typeOf
 
 
 class MainActivity : AppCompatActivity() {
@@ -29,9 +27,9 @@ class MainActivity : AppCompatActivity() {
         3 to Pair(1, 0), 4 to Pair(1, 1), 5 to Pair(1, 2), 6 to Pair(2, 0),
         7 to Pair(2, 1), 8 to Pair(2, 2))
 
-    /** Variables for two players. */
-    private lateinit var player1: Player
-    private lateinit var player2: Player
+    /** Variables for two test human players. */
+    private val player1 = HumanPlayer("Tyler")
+    private val player2 = HumanPlayer("Reed")
 
     /** Variable for tic-tac-toe game. */
     private val game = Game()
@@ -42,37 +40,23 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setPlayers()
         game.startGame(player1, player2)
         game.startNewRound()
 
+
         game.onRoundOverListener = {
-                result -> showResultMessage(result)
+            result -> showResultMessage(result)
         }
 
         displayView = findViewById(R.id.display_text_view)
+        displayView.text = resources.getString(R.string.display_text, game.players[game.turn].name,
+            game.pieces[game.turn])
 
         for(index in buttonIds.indices)
         {
             findViewById<Button>(buttonIds[index]).setOnClickListener {
-                playTurn(index)
+                setButtonView(index)
             }
-        }
-
-        updateBoard()
-    }
-
-    private fun updateBoard()
-    {
-        for(index in buttonIds.indices) {
-            val button = findViewById<Button>(buttonIds[index])
-            button.text = game.board[index/3, index%3].toString()
-        }
-        if (game.turn != -1) {
-            displayView.text = getString(
-                R.string.display_text, game.players[game.turn].name,
-                game.pieces[game.turn]
-            )
         }
     }
 
@@ -80,35 +64,33 @@ class MainActivity : AppCompatActivity() {
      * Set the button text view specified in num.
      * @param num number of button to update on layout.
      */
-    private fun playTurn(index: Int) {
-        if (!game.roundInProgress) {
+    private fun setButtonView(num: Int)
+    {
+        if (!game.roundInProgress)
+        {
             showErrorMessage()
-        } else {
+        }
+        else {
+            val currentPiece = game.pieces[game.turn].toString()
             val playResult =
-                game.playPiece(boardLocations[index]!!.first, boardLocations[index]!!.second)
+                game.playPiece(boardLocations[num]!!.first, boardLocations[num]!!.second)
             if (!playResult)
                 showErrorMessage()
-        }
-        updateBoard()
-    }
-
-    private fun setPlayers() {
-        player1 = makePlayer(intent.getStringExtra("player_1_name") ?: "",
-            intent.getIntExtra("player_1_type", 0))
-
-        player2 = makePlayer(intent.getStringExtra("player_2_name") ?: "",
-            intent.getIntExtra("player_2_type", 0))
-    }
-
-    private fun makePlayer(name: String, type: Int): Player {
-        return when (type) {
-            0 -> HumanPlayer(name)
-            1 -> EasyAIPlayer()
-            2 -> MediumAIPlayer()
-            else -> HardAIPlayer()
+            else {
+                if (game.turn == -1) {
+                    displayView.text = resources.getString(R.string.game_over_text)
+                    findViewById<Button>(buttonIds[num]).text = currentPiece
+                } else {
+                    findViewById<Button>(buttonIds[num]).text = currentPiece
+                    displayView.text = resources.getString(
+                        R.string.display_text,
+                        game.players[game.turn].name,
+                        game.pieces[game.turn]
+                    )
+                }
+            }
         }
     }
-
 
     /**
      * Show toast when a player has attempted to put a piece in a spot that already contains one,
