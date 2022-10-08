@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
 
         game.onRoundOverListener = {
-            result -> showResultMessage(result)
+                result -> showResultMessage(result)
         }
 
         displayView = findViewById(R.id.display_text_view)
@@ -57,6 +57,21 @@ class MainActivity : AppCompatActivity() {
             findViewById<Button>(buttonIds[index]).setOnClickListener {
                 setButtonView(index)
             }
+        }
+        updateBoard()
+    }
+
+    private fun updateBoard()
+    {
+        for(index in buttonIds.indices) {
+            val button = findViewById<Button>(buttonIds[index])
+            button.text = game.board[index/3, index%3].toString()
+        }
+        if (game.turn != -1) {
+            displayView.text = getString(
+                R.string.display_text, game.players[game.turn].name,
+                game.pieces[game.turn]
+            )
         }
     }
 
