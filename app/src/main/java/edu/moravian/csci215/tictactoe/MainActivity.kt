@@ -58,7 +58,6 @@ class MainActivity : AppCompatActivity() {
                 playTurn(index)
             }
         }
-
         updateBoard()
     }
 
